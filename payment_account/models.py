@@ -17,7 +17,6 @@ class Account_type(models.Model):
         return self.account_type
     
 
-
 class List_Account(models.Model):
     p_k=models.AutoField(primary_key=True)
     Name=models.CharField(max_length=1000,null=True,blank=True)
