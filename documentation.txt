@@ -1,0 +1,224 @@
+Contact:
+  Method(get,post)->create supplier
+	1.https://softwareapi.techelementbd.com/co-api/suppliersadd/
+  Method(get,put,delete) by pk
+	2.https://softwareapi.techelementbd.com/co-api/suppliersapid/
+  Method(get) show all data and searching
+        3.https://softwareapi.techelementbd.com/co-api/supplierdisplayfilter/?search=
+
+  Method(get,post)->create customer 
+	4.https://softwareapi.techelementbd.com/co-api/customersadd/
+  Method(get,put,delete) by pk
+	5.https://softwareapi.techelementbd.com/co-api/customersapid/
+  Method(get) for searching
+	6.https://softwareapi.techelementbd.com/co-api/customerdisplayfilter/?search=
+
+  Method(get,post)->create customer group and show all list
+	7.https://softwareapi.techelementbd.com/co-api/customergroupapil/
+  Method(get,put,delete) by pk
+	8.https://softwareapi.techelementbd.com/co-api/customergroupapid/
+  Method(get) for searching
+	9.https://softwareapi.techelementbd.com/co-api/customergroupfilter/?search=
+
+  Method(get,post)->create business name and show all list
+	10.https://softwareapi.techelementbd.com/co-api/businessnameapil/
+  Method(get,put,delete) by pk
+	11.https://softwareapi.techelementbd.com/co-api/businessnameapid/
+  Method(get) for searching
+	12.https://softwareapi.techelementbd.com/co-api/businessnamefilter/?search=
+
+  Method(get,post)->create contact id and show all list
+	13.https://softwareapi.techelementbd.com/co-api/contactidapil/
+  Method(get,put,delete) by pk
+	14.https://softwareapi.techelementbd.com/co-api/contactidapid/
+
+  Method(post)->
+	15.https://softwareapi.techelementbd.com/co-api/actionsapi/
+
+
+
+Purchase:
+  Method(get,post)->create purchase 
+	1.https://softwareapi.techelementbd.com/pu-api/purchaseadd/
+  Method(get,put,delete) by pk
+	2.https://softwareapi.techelementbd.com/pu-api/purchaseapid/
+  Method(get) show all data and searching
+	3.https://softwareapi.techelementbd.com/pu-api/purchasedisplayfilter/?search=
+
+  Method(get,post)->create add purchase
+	4.https://softwareapi.techelementbd.com/pu-api/addpurchaseadd/
+  Method(get,put,delete) by pk
+	5.https://softwareapi.techelementbd.com/pu-api/addpurchaseapid/
+  Method(get) show all data and searching
+	6.https://softwareapi.techelementbd.com/pu-api/addpurchasedisplayfilter/?search=
+
+  Method(get,post)->create list purchase return
+	5.https://softwareapi.techelementbd.com/pu-api/listpurchasereturnadd/
+  Method(get,put,delete) by pk
+	6.https://softwareapi.techelementbd.com/pu-api/listpurchasereturnapid/
+  Method(get) show all data and searching 
+	7.https://softwareapi.techelementbd.com/pu-api/listpurchasereturndisplayfilter/?search=
+
+  Method(get,post) for create additional expense and show all list
+	8.https://softwareapi.techelementbd.com/pu-api/expenseaddandsearch/
+  Method(get,put,delete) by pk
+	9.https://softwareapi.techelementbd.com/pu-api/expenseapid/
+  Method(get) for searching
+	10.https://softwareapi.techelementbd.com/pu-api/expenseaddandsearch/?search=
+
+
+Sell:
+  Method(get,post)->create sales 
+	1.https://softwareapi.techelementbd.com/se-api/allsalesadd/
+  Method(get,put,delete) by pk
+	2.https://softwareapi.techelementbd.com/se-api/allsalesapid/
+  Method(get) show all data and searching
+	3.https://softwareapi.techelementbd.com/se-api/allsalesdisplayfilter/?search=
+
+  Method(get,post)->create listdraft
+	4.https://softwareapi.techelementbd.com/se-api/listdraftadd/
+  Method(get,put,delete) by pk
+	5.https://softwareapi.techelementbd.com/se-api/listdraftapid/
+  Method(get) show all data and searching 
+	6.https://softwareapi.techelementbd.com/se-api/listdraftdisplayfilter/?search=
+
+  Method(get,post)->create listsellreturn 
+	7.https://softwareapi.techelementbd.com/se-api/listsellreturnadd/
+  Method(get,put,delete) by pk
+	8.https://softwareapi.techelementbd.com/se-api/listsellreturnapid/
+  Method(get) show all data and searching
+	9.https://softwareapi.techelementbd.com/se-api/listsellreturndisplayfilter/?search=
+
+  Method(get,post)->create shipment
+	10.https://softwareapi.techelementbd.com/se-api/shipmentadd/
+  Method(get,put,delete) by pk
+	11.https://softwareapi.techelementbd.com/se-api/shipmentapid/
+  Method(get) show all data and searching 
+	12.https://softwareapi.techelementbd.com/se-api/shipmentdisplayfilter/?search=
+
+  Method(get,post)->create discount
+	9.https://softwareapi.techelementbd.com/se-api/discountadd/
+  Method(get,put,delete) by pk
+	10.https://softwareapi.techelementbd.com/se-api/discountapid/
+  Method(get) show all data and searching 
+	11.https://softwareapi.techelementbd.com/se-api/discountdisplayfilter/?search=
+
+  Method(get,post)->create location and show all list
+	12.https://softwareapi.techelementbd.com/se-api/locationapil/
+  Method(get,put,delete) by pk
+	13.https://softwareapi.techelementbd.com/se-api/locationapid/
+  Method(get) for searching
+	14.https://softwareapi.techelementbd.com/se-api/locationfilter/?search=
+ 
+
+
+User:
+
+  Method(get,post)->create user and show all list
+	1.https://softwareapi.techelementbd.com/usr-api/usersaddandfilter/
+  Method(get,put,delete) by pk
+	2.https://softwareapi.techelementbd.com/usr-api/usersapid/
+  Method(get) for searching
+	3.https://softwareapi.techelementbd.com/usr-api/usersaddandfilter/?search=
+
+
+  Method(get,post)->create role
+	1.https://softwareapi.techelementbd.com/usr-api/rolesadd/
+  Method(get,put,delete) by pk
+	2.https://softwareapi.techelementbd.com/usr-api/rolesapid/
+  Method(get) show all list and searching
+	3.https://softwareapi.techelementbd.com/usr-api/rolesdisplayfilter/?search=
+
+
+  Method(get,post)->create sales commission and show all list
+	1.https://softwareapi.techelementbd.com/usr-api/salescommisionapil/
+  Method(get,put,delete) by pk
+	2.https://softwareapi.techelementbd.com/usr-api/salescommisionapid/
+  Method(get) for searching
+	3.https://softwareapi.techelementbd.com/usr-api/salescommisionapil/?search=
+
+
+Method(get,post)->create add-sales and show all list
+	1.https://softwareapi.techelementbd.com/usr-api/addapil/
+  Method(get,put,delete) by pk
+	2.https://softwareapi.techelementbd.com/usr-api/addapid/
+  Method(get) for searching
+	3.https://softwareapi.techelementbd.com/usr-api/addapil/?search=
+
+
+  Mthod(post)->login
+	4.https://softwareapi.techelementbd.com/usr-api/loginapi/
+   
+
+
+
+Stock Transfer:
+  Method(get,post)-> create stock transfer and show all list
+	1.https://softwareapi.techelementbd.com/st-api/stocktransferl/
+  Method(get,put,delete) by pk
+	2.https://softwareapi.techelementbd.com/st-api/stocktransferd/
+  Method(get) for searching
+	3.https://softwareapi.techelementbd.com/st-api/stocktransferfilter/?search=
+
+
+
+Stock Adjustment:
+  Method(get,post)-> create stock adjustment and show all list
+	1.https://softwareapi.techelementbd.com/sad-api/stockadjustmentapil/
+  Method(get,put,delete) by pk
+	2.https://softwareapi.techelementbd.com/sad-api/stockadjustmentapid/
+  Method(get) for searching
+	3.https://softwareapi.techelementbd.com/sad-api/stockadjustmentfilter/?search=
+
+
+
+
+Payment Account:
+  Method(get,post)-> create Payment Account and show all list
+	1.https://softwareapi.techelementbd.com/pa-api/listaccountapil/
+  Method(get,put,delete) by pk
+	2.https://softwareapi.techelementbd.com/pa-api/listaccountapid/
+  Method(get) for searching 
+	3.https://softwareapi.techelementbd.com/pa-api/listaccountfilter/?search=
+
+  Method(get,post)-> create Account Type and show all list
+	1.https://softwareapi.techelementbd.com/pa-api/acccounttypel/
+  Method(get,put,delete) by pk
+	2.https://softwareapi.techelementbd.com/pa-api/acccounttyped/
+  Method(get) for searching 
+	3.https://softwareapi.techelementbd.com/pa-api/acccounttypefilter/?search=
+
+  Method(get,post)-> create liability and show all list
+	1.https://softwareapi.techelementbd.com/pa-api/liabilityapil/
+  Method(get,put,delete) by pk
+	2.https://softwareapi.techelementbd.com/pa-api/liabilityapid/
+  Method(get) for searching 
+	3.https://softwareapi.techelementbd.com/pa-api/liabilityfilter/?search=
+
+  Method(get,post)-> create Assets and show all list
+	1.https://softwareapi.techelementbd.com/pa-api/assetsapil/
+  Method(get,put,delete) by pk
+	2.https://softwareapi.techelementbd.com/pa-api/assetsapid/
+  Method(get) for searching 
+	3.https://softwareapi.techelementbd.com/pa-api/assetsfilter/?search=
+
+  Method(get,post)-> create trial balance and show all list
+	1.https://softwareapi.techelementbd.com/pa-api/trialbalanceapil/
+  Method(get,put,delete) by pk
+	2.https://softwareapi.techelementbd.com/pa-api/trialbalanceapid/
+  Method(get) for searching 
+	3.https://softwareapi.techelementbd.com/pa-api/trialbalancefilter/?search=
+
+  Method(get,post)-> create Cash flow and show all list
+	1.https://softwareapi.techelementbd.com/pa-api/cashflowapil/
+  Method(get,put,delete) by pk
+	2.https://softwareapi.techelementbd.com/pa-api/cashflowapid/
+  Method(get) for searching 
+	3.https://softwareapi.techelementbd.com/pa-api/cashflowfilter/?search=
+
+  Method(get,post)-> create Payment account report and show all list
+	1.https://softwareapi.techelementbd.com/pa-api/paymentaccountreportapil/
+  Method(get,put,delete) by pk
+	2.https://softwareapi.techelementbd.com/pa-api/paymentaccountreportapid/
+  Method(get) for searching 
+	3.https://softwareapi.techelementbd.com/pa-api/paymentaccountreportfilter/?search=
