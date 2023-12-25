@@ -5,6 +5,8 @@ from .models import Stock_Adjustment
 from .serializers import Stock_Adjustment_Serializer
 from rest_framework import status
 from django.http import Http404
+from rest_framework import generics
+from rest_framework import filters
 
 
 class Stock_Adjustment_Api_List(APIView):
@@ -39,4 +41,11 @@ class Stock_Adjustment_Api_Detail(APIView):
     def delete(self, request, pk, format=None):
         snippet = self.get_object(pk)
         snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"Message":"Successfully data deleted"})
+
+
+class Stock_Adjustment_Search_Api(generics.ListCreateAPIView):
+    search_fields=['Action','Date','Reference_No','Adjustment_Type','Total_Amount','Total_Amount_Recovered','Reason','Added_By']
+    filter_backends=(filters.SearchFilter,)
+    queryset=Stock_Adjustment.objects.all()
+    serializer_class=Stock_Adjustment_Serializer

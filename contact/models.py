@@ -3,37 +3,37 @@ from datetime import datetime
 
 
 PAY_TERM=(
-    (0,'Select'),
-    (1,'Daily'),
-    (2,'Weekly'),
-    (3,'Half of Month'),
-    (4,'Monthly'),
-    (5,'Half of Year'),
-    (6,'Yearly')
+    ('Select','Select'),
+    ('Daily','Daily'),
+    ('Weekly','Weekly'),
+    ('Half of Month','Half of Month'),
+    ('Monthly','Monthly'),
+    ('Half of Year','Half of Year'),
+    ('Yearly','Yearly')
 )
 
 ACTION_STATUS=(
-    (0,'Action'),
-    (1,'Pay'),
-    (3,'View'),
-    (4,'Edit'),
-    (5,'Delete'),
-    (6,'Deactivate'),
-    (7,'Ledger'),
-    (8,'Purchase'),
-    (9,'Stock Report'),
-    (10,'Documents & Note')
+    ('Action','Action'),
+    ('Pay','Pay'),
+    ('View','View'),
+    ('Edit','Edit'),
+    ('Delete','Delete'),
+    ('Deactivate','Deactivate'),
+    ('Ledger','Ledger'),
+    ('Purchase','Purchase'),
+    ('Stock Report','Stock Report'),
+    ('Documents & Note','Documents & Note')
 )
 
 PAID_STATUS=(
-    (0,'Checking'),
-    (1,'Payment Done'),
-    (2,'Due Running'),
-    (3,'Return Due Running')
+    ('Checking','Checking'),
+    ('Payment Done','Payment Done'),
+    ('Due Running','Due Running'),
+    ('Return Due Running','Return Due Running')
 )
 
 class Action(models.Model):
-    Actions=models.IntegerField(choices=ACTION_STATUS,default=0)
+    Actions=models.CharField(max_length=1000,choices=ACTION_STATUS,default='Action')
 
 class Customer_Group(models.Model):
     p_k=models.AutoField(primary_key=True)
@@ -57,7 +57,7 @@ class Contact_id(models.Model):
     Contact_Ids=models.CharField(max_length=1000,null=True,blank=True)
 
     def __str__(self):
-        return self.Contact_Ids
+        return f'{self.Contact_Ids}'
     
 
 
@@ -71,13 +71,13 @@ class Suppliers(models.Model):
     Mobile=models.CharField(max_length=20,unique=True,null=True,blank=True)
     Supplier_group=models.ForeignKey(Customer_Group,on_delete=models.CASCADE,null=True,blank=True)
     Tax_Number=models.TextField(unique=True,blank=True,null=True)
-    Pay_Term=models.IntegerField(choices=PAY_TERM,default=0,null=True,blank=True)
+    Pay_Term=models.CharField(max_length=1000,choices=PAY_TERM,default='Select')
     Opening_Balance_Due=models.TextField(null=True,blank=True)
     Total_Amount=models.TextField(null=True,blank=True)
     Advance_Amount=models.TextField(null=True,blank=True)
     Due_Amount=models.TextField(null=True,blank=True)
     Return_Due_Amount=models.TextField(null=True,blank=True)
-    Paid_Status=models.IntegerField(choices=PAID_STATUS,default=0,null=True,blank=True)
+    Paid_Status=models.CharField(max_length=1000,choices=PAID_STATUS,default='Checking')
     Created_At=models.DateTimeField(auto_now_add=True, null=True,blank=True)
 
     def __str__(self):
@@ -97,7 +97,7 @@ class Customers(models.Model):
     Credit_limit=models.TextField(null=True,blank=True)
     Reward_Point=models.TextField(null=True,blank=True)
     Customer_group=models.ForeignKey(Customer_Group,on_delete=models.CASCADE,null=True,blank=True)
-    Pay_Term=models.IntegerField(choices=PAY_TERM,default=0)
+    Pay_Term=models.CharField(max_length=1000,choices=PAY_TERM,default='Select')
     Opening_Balance=models.TextField(null=True,blank=True)
     Opening_Balance_Due=models.TextField(null=True,blank=True)
     Advance_Balance=models.TextField(null=True,blank=True)

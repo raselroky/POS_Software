@@ -5,6 +5,8 @@ from . models import Purchases,Sale_Purchase,Due_Amount,Sales,Supplier_And_Custo
 from . serializers import Purchase_Serializer,Sale_Purchase_Serializer,Due_Amount_Serializer,Sales_Serializer,Supplier_And_Customer_Report_Serializer,Input_Tax_Serializer,Output_Tax_Serializer,Expense_Tax_Serializer,Customer_Group_Report_Serializer,Stock_Adjustment_Report_Serializer,Item_Report_Serializer,Product_Purchase_Report_Serializer,Product_Sell_Report_Serializer,Purchase_Payment_Report_Serializer,Sell_Payment_Report_Serializer,Expense_Report_Serializer,Register_Report_Serializer,Sales_Report_Added_Serializer,Sales_Report_With_Commission_Serializer,Sales_Report_Expense_Serializer,Stock_Report_Serializer,Expense_Categories_List_Serializer
 from rest_framework import status
 from django.http import Http404
+from rest_framework import generics
+from rest_framework import filters
 
 
 class Purchases_Api_List(APIView):
@@ -791,3 +793,9 @@ class Expense_Categories_List_Api_Detail(APIView):
         snippet = self.get_object(pk)
         snippet.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class Expense_Categories_Search_Api(generics.ListCreateAPIView):
+    search_fields=[]
+    filter_backends=(filters.SearchFilter,)
+    

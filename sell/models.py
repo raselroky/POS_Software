@@ -2,23 +2,24 @@ from django.db import models
 from contact.models import Business_name
 
 PAYMENT_STATUS=(
-    (0,'Due'), #red
-    (1,'Partial'), #blue
-    (2,'Paid') #green
+    ('None','None'),
+    ('Due','Due'), #red
+    ('Partial','Partial'), #blue
+    ('Paid','Paid') #green
 )
 PAYMENT_METHOD=(
-    (0,'None'),
-    (1,'Cash'),
-    (2,'Check'),
-    (3,'Bank-Card'),
-    (4,'Bkash'),
-    (5,'Nagad'),
-    (6,'Upay')
+    ('None','None'),
+    ('Cash','Cash'),
+    ('Check','Check'),
+    ('Bank-Card','Bank-Card'),
+    ('Bkash','Bkash'),
+    ('Nagad','Nagad'),
+    ('Upay','Upay')
 )
 SHIPPING_STATUS=(
-    (0,'None'),
-    (1,'Ordered'),
-    (2,'Pending')
+    ('None','None'),
+    ('Ordered','Ordered'),
+    ('Pending','Pending')
 )
 
 class Location_Set(models.Model):
@@ -36,8 +37,8 @@ class All_Sales(models.Model):
     Customer_Name=models.ForeignKey(Business_name,on_delete=models.CASCADE,null=True,blank=True)
     Contact_Number=models.CharField(max_length=20,null=True,blank=True)
     Location=models.ForeignKey(Location_Set,on_delete=models.CASCADE,null=True,blank=True)
-    Payment_Status=models.IntegerField(choices=PAYMENT_STATUS,default=0)
-    Payment_Method=models.IntegerField(choices=PAYMENT_METHOD,default=0)
+    Payment_Status=models.CharField(max_length=1000,choices=PAYMENT_STATUS,default='None')
+    Payment_Method=models.CharField(max_length=1000,choices=PAYMENT_METHOD,default='None')
     Total_Amount=models.TextField(null=True,blank=True)
     Total_Paid=models.TextField(null=True,blank=True)
     Sell_Due=models.TextField(null=True,blank=True)
@@ -73,7 +74,7 @@ class List_Sell_Return(models.Model):
     Customer_Name=models.ForeignKey(Business_name,on_delete=models.CASCADE,null=True,blank=True)
     Contact_Number=models.CharField(max_length=20,null=True,blank=True)
     Location=models.ForeignKey(Location_Set,on_delete=models.CASCADE,null=True,blank=True)
-    Payment_Status=models.IntegerField(choices=PAYMENT_STATUS,null=True,blank=True)
+    Payment_Status=models.CharField(max_length=1000,choices=PAYMENT_STATUS,default='None')
     Total_Amount=models.TextField(null=True,blank=True)
     Payment_Due=models.TextField(null=True,blank=True)
 
@@ -89,8 +90,8 @@ class Shipments(models.Model):
     Customer_Name=models.ForeignKey(Business_name,on_delete=models.CASCADE,null=True,blank=True)
     Contact_Number=models.CharField(max_length=20,null=True,blank=True)
     Location=models.ForeignKey(Location_Set,on_delete=models.CASCADE,null=True,blank=True)
-    Shipping_Status=models.IntegerField(choices=SHIPPING_STATUS,default=0)
-    Payment_Status=models.IntegerField(choices=PAYMENT_STATUS,default=0)
+    Shipping_Status=models.CharField(max_length=1000,choices=SHIPPING_STATUS,default='None')
+    Payment_Status=models.CharField(max_length=1000,choices=PAYMENT_STATUS,default='None')
     Service_Staff=models.CharField(max_length=1000,null=True,blank=True)
 
     def __str__(self):

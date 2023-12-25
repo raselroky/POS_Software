@@ -5,6 +5,8 @@ from .models import List_Account,Account_type,Liability,Assets,Trial_Balance,Cas
 from .serializers import List_Account_Serializer,Account_type_Serialzer,Liability_Serializer,Assets_Serializer,Trial_Balance_Serializer,Cash_Flow_Serializer,Payment_Account_Report_Serializer
 from rest_framework import status
 from django.http import Http404
+from rest_framework import generics
+from rest_framework import filters
 
 class List_Account_Api_List(APIView):
     def get(self,request):
@@ -39,7 +41,7 @@ class List_Account_Api_Detial(APIView):
     def delete(self, request, pk, format=None):
         snippet = self.get_object(pk)
         snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"Message":"Successfully data deleted"})
 
 
 class Account_Types_Api_List(APIView):
@@ -76,7 +78,7 @@ class Account_Types_Api_Detail(APIView):
     def delete(self, request, pk, format=None):
         snippet = self.get_object(pk)
         snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"Message":"Successfully data deleted"})
 
 
 
@@ -113,7 +115,7 @@ class Liability_Api_Detail(APIView):
     def delete(self, request, pk, format=None):
         snippet = self.get_object(pk)
         snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"Message":"Successfully data deleted"})
 
 
 
@@ -151,7 +153,7 @@ class Assets_Api_Detail(APIView):
     def delete(self, request, pk, format=None):
         snippet = self.get_object(pk)
         snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"Message":"Successfully data deleted"})
 
 
 
@@ -188,7 +190,7 @@ class Trial_Balance_Api_Detail(APIView):
     def delete(self, request, pk, format=None):
         snippet = self.get_object(pk)
         snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"Message":"Successfully data deleted"})
 
 
 
@@ -225,7 +227,7 @@ class Cash_Flow_Api_Detail(APIView):
     def delete(self, request, pk, format=None):
         snippet = self.get_object(pk)
         snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"Message":"Successfully data deleted"})
 
 
 
@@ -262,4 +264,47 @@ class Payment_Account_Report_Api_Detail(APIView):
     def delete(self, request, pk, format=None):
         snippet = self.get_object(pk)
         snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"Message":"Successfully data deleted"})
+
+
+class List_Account_Search_Api(generics.ListCreateAPIView):
+    search_fields=[]
+    filter_backends=(filters.SearchFilter,)
+    queryset=List_Account.objects.all()
+    serializer_class=List_Account_Serializer
+
+class Account_Type_Search_Api(generics.ListCreateAPIView):
+    search_fields=[]
+    filter_backends=(filters.SearchFilter,)
+    queryset=Account_type.objects.all()
+    serializer_class=Account_type_Serialzer
+
+class Liability_Search_Api(generics.ListCreateAPIView):
+    search_fields=[]
+    filter_backends=(filters.SearchFilter,)
+    queryset=Liability.objects.all()
+    serializer_class=Liability_Serializer
+
+class Assets_Search_Api(generics.ListCreateAPIView):
+    search_fields=[]
+    filter_backends=(filters.SearchFilter,)
+    queryset=Assets.objects.all()
+    serializer_class=Assets_Serializer
+
+class Trial_Balance_Search_Api(generics.ListCreateAPIView):
+    search_fields=[]
+    filter_backends=(filters.SearchFilter,)
+    queryset=Trial_Balance.objects.all()
+    serializer_class=Trial_Balance_Serializer
+
+class Cash_Flow_Search_Api(generics.ListCreateAPIView):
+    search_fields=[]
+    filter_backends=(filters.SearchFilter,)
+    queryset=Cash_Flow.objects.all()
+    serializer_class=Cash_Flow_Serializer
+
+class Payment_Account_Report_Search_Api(generics.ListCreateAPIView):
+    search_fields=[]
+    filter_backends=(filters.SearchFilter,)
+    queryset=Payment_Account_Report.objects.all()
+    serializer_class=Payment_Account_Report_Serializer

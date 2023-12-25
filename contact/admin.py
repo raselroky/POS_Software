@@ -21,5 +21,5 @@ class Customer_group_Column_Display(admin.ModelAdmin):
 admin.site.register(Customer_Group,Customer_group_Column_Display)
 
 class Contact_id_Column_Display(admin.ModelAdmin):
-    list_display=('p_k','Contact_Ids',)
+    list_display=('p_k','Contact_Ids')
 admin.site.register(Contact_id,Contact_id_Column_Display)

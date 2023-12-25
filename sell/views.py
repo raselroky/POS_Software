@@ -5,6 +5,9 @@ from .models import All_Sales,List_Draft,Shipments,Discount,Location_Set,List_Se
 from .serializers import All_Sales_Serializer,List_Draft_Serializer,Shipments_Serializer,Discount_Serializer,Location_Set_Serializer,List_Sell_Return_Serializer
 from rest_framework import status
 from django.http import Http404
+from rest_framework import filters
+from rest_framework import generics
+
 
 class All_Sales_Api_List(APIView):
     def get(self,request):
@@ -225,11 +228,40 @@ class Location_Set_Api_Detail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class All_Sales_Filter_Api(APIView):
-    def post(self,request):
-        Customer_Name=request.data['Customer_Name']
-        Location=request.data['Location']
-        
-        all_sales=All_Sales.objects.filter(Customer_Name=Customer_Name,Location=Location)
-        serializer=All_Sales_Serializer(all_sales,many=True)
-        return Response(serializer.data)
+
+
+class All_Sales_Searh_Api(generics.ListCreateAPIView):
+    search_fields = ['Created_At','Invoice_No','Contact_Number','Payment_Status','Payment_Method','Total_Amount','Total_Paid','Sell_Due','Sell_Return_Due','Shipping_Status','Shipping_Address','Total_Items','Added_By']
+    filter_backends = (filters.SearchFilter,)
+    queryset = All_Sales.objects.all()
+    serializer_class = All_Sales_Serializer
+
+class List_Sell_Return_Searh_Api(generics.ListCreateAPIView):
+    search_fields = ['Created_At','Invoice_No','Parent_Sale','Contact_Number','Payment_Status','Total_Amount','Payment_Due']
+    filter_backends = (filters.SearchFilter,)
+    queryset = List_Sell_Return.objects.all()
+    serializer_class = List_Sell_Return_Serializer
+
+class List_Draft_Searh_Api(generics.ListCreateAPIView):
+    search_fields = ['Created_At','Reference_No','Contact_Number','Total_Items','Added_By']
+    filter_backends = (filters.SearchFilter,)
+    queryset = List_Draft.objects.all()
+    serializer_class = List_Draft_Serializer
+
+class Shipment_Searh_Api(generics.ListCreateAPIView):
+    search_fields = ['Created_At','Invoice_No','Contact_Number','Shipping_Status','Payment_Status','Service_Staff']
+    filter_backends = (filters.SearchFilter,)
+    queryset = Shipments.objects.all()
+    serializer_class = Shipments_Serializer
+
+class Discount_Searh_Api(generics.ListCreateAPIView):
+    search_fields = ['Starts_At','Ends_At','Discount_Amount','Priority','Brand','Category','Product']
+    filter_backends = (filters.SearchFilter,)
+    queryset = Discount.objects.all()
+    serializer_class = Discount_Serializer
+
+class Location_Search_Api(generics.ListCreateAPIView):
+    search_fields = ['Location']
+    filter_backends = (filters.SearchFilter,)
+    queryset =Location_Set.objects.all()
+    serializer_class = Location_Set_Serializer

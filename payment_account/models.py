@@ -2,10 +2,10 @@ from django.db import models
 from sell.models import PAYMENT_METHOD
 
 ACTION_STATUS=(
-    (0,'Action'),
-    (1,'View'),
-    (2,'Edit'),
-    (3,'Delete')
+    ('Action','Action'),
+    ('View','View'),
+    ('Edit','Edit'),
+    ('Delete','Delete')
 )
 
 
@@ -27,7 +27,7 @@ class List_Account(models.Model):
     Balance=models.TextField(null=True,blank=True)
     Account_Details=models.TextField(null=True,blank=True)
     Added_By=models.CharField(max_length=1000,null=True,blank=True)
-    Action=models.IntegerField(choices=ACTION_STATUS,default=0)
+    Action=models.CharField(max_length=1000,choices=ACTION_STATUS,default='Action')
 
     def __str__(self):
         return self.Name +' '+self.Account_Number
@@ -57,7 +57,7 @@ class Cash_Flow(models.Model):
     Date=models.DateTimeField(auto_now_add=True, null=True,blank=True)
     Account=models.ForeignKey(Account_type,on_delete=models.CASCADE,null=True,blank=True)
     Description=models.CharField(max_length=1000,null=True,blank=True)
-    Payment_Method=models.IntegerField(choices=PAYMENT_METHOD,default=0)
+    Payment_Method=models.CharField(max_length=1000,choices=PAYMENT_METHOD,default='None')
     Payment_Details=models.CharField(max_length=1000,null=True,blank=True)
     Debit=models.TextField(null=True,blank=True)
     Credit=models.TextField(null=True,blank=True)

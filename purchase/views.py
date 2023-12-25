@@ -1,23 +1,13 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Purchases,Add_Purchase,List_Purchase_Return
-from .serializers import Purchases_Serializer,Add_Purchases_Serializer,List_Purchase_Return_Serializer
+from .models import Purchases,Add_Purchase,List_Purchase_Return,Additional_Expense
+from .serializers import Purchases_Serializer,Add_Purchases_Serializer,List_Purchase_Return_Serializer,Additonal_Expense_Serializer,Purchases_All_Show_Serializer,Add_Purchases_All_Show_Serializer,List_Purchase_Return_All_Show_Serializer
 from django.http import Http404
 from rest_framework import status
+from rest_framework import filters
+from rest_framework import generics
 
-
-class Purchases_Api_List(APIView):
-    def get(self,request):
-        purchase=Purchases.objects.all()
-        serializer=Purchases_Serializer(purchase,many=True)
-        return Response(serializer.data)
-    def post(self,request):
-        serializer=Purchases_Serializer(data=request.data)
-        if(serializer.is_valid()):
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class Purchase_Api_Detail(APIView):
     def get_object(self, pk):
@@ -27,11 +17,11 @@ class Purchase_Api_Detail(APIView):
             raise Http404
     def get(self, request, pk, format=None):
         snippet = self.get_object(pk)
-        serializer = Purchases_Serializer(snippet)
+        serializer = Purchases_All_Show_Serializer(snippet)
         return Response(serializer.data)
     def put(self, request, pk, format=None):
         snippet = self.get_object(pk)
-        serializer = Purchases_Serializer(snippet, data=request.data)
+        serializer = Purchases_All_Show_Serializer(snippet, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -39,20 +29,8 @@ class Purchase_Api_Detail(APIView):
     def delete(self, request, pk, format=None):
         snippet = self.get_object(pk)
         snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"Message":"Successfully data deleted"})
 
-
-class Add_Purchases_Api_List(APIView):
-    def get(self,request):
-        add_purchase=Add_Purchase.objects.all()
-        serializer=Add_Purchases_Serializer(add_purchase,many=True)
-        return Response(serializer.data)
-    def post(self,request):
-        serializer=Add_Purchases_Serializer(data=request.data)
-        if(serializer.is_valid()):
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class Add_Purchase_Api_Detail(APIView):
     def get_object(self, pk):
@@ -62,11 +40,11 @@ class Add_Purchase_Api_Detail(APIView):
             raise Http404
     def get(self, request, pk, format=None):
         snippet = self.get_object(pk)
-        serializer = Add_Purchases_Serializer(snippet)
+        serializer = Add_Purchases_All_Show_Serializer(snippet)
         return Response(serializer.data)
     def put(self, request, pk, format=None):
         snippet = self.get_object(pk)
-        serializer = Add_Purchases_Serializer(snippet, data=request.data)
+        serializer = Add_Purchases_All_Show_Serializer(snippet, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -74,23 +52,10 @@ class Add_Purchase_Api_Detail(APIView):
     def delete(self, request, pk, format=None):
         snippet = self.get_object(pk)
         snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"Message":"Successfully data deleted"})
 
 
 
-class List_Purchase_Return_Api_List(APIView):
-    def get(self,request):
-        list_purchase_return=List_Purchase_Return.objects.all()
-        serializer=List_Purchase_Return_Serializer(list_purchase_return,many=True)
-        return Response(serializer.data)
-    
-    def post(self,request):
-        serializer=List_Purchase_Return_Serializer(data=request.data)
-        if(serializer.is_valid()):
-            serializer.save()
-
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class List_Purchase_Return_Api_Detail(APIView):
     def get_object(self, pk):
@@ -100,11 +65,11 @@ class List_Purchase_Return_Api_Detail(APIView):
             raise Http404
     def get(self, request, pk, format=None):
         snippet = self.get_object(pk)
-        serializer = List_Purchase_Return_Serializer(snippet)
+        serializer = List_Purchase_Return_All_Show_Serializer(snippet)
         return Response(serializer.data)
     def put(self, request, pk, format=None):
         snippet = self.get_object(pk)
-        serializer = List_Purchase_Return_Serializer(snippet, data=request.data)
+        serializer = List_Purchase_Return_All_Show_Serializer(snippet, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -112,17 +77,73 @@ class List_Purchase_Return_Api_Detail(APIView):
     def delete(self, request, pk, format=None):
         snippet = self.get_object(pk)
         snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"Message":"Successfully data deleted"})
 
 
-
-
-class Purchase_Filter_Api(APIView):
-    def post(self,request):
-        Supplier=request.data['Supplier']
-        Location=request.data['Location']
-
-        purchase=Purchases.objects.filter(Supplier=Supplier,Location=Location)
-        serializer=Purchases_Serializer(purchase,many=True)
+class Additional_Expense_Api_Detail(APIView):
+    def get_object(self, pk):
+        try:
+            return Additional_Expense.objects.get(p_k=pk)
+        except Additional_Expense.DoesNotExist:
+            raise Http404
+    def get(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        serializer = Additonal_Expense_Serializer(snippet)
         return Response(serializer.data)
+    def put(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        serializer = Additonal_Expense_Serializer(snippet, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def delete(self, request, pk, format=None):
+        snippet = self.get_object(pk)
+        snippet.delete()
+        return Response({"Message":"Successfully data deleted"})
 
+
+
+
+
+class Purchase_Add_Api(generics.ListCreateAPIView):
+    #search_fields = ['Created_At','Reference_No','Purchase_Status','Payment_Status','Grand_Total','Payment_Due','Added_By']
+    #filter_backends = (filters.SearchFilter,)
+    queryset = Purchases.objects.all()
+    serializer_class = Purchases_Serializer
+
+class Purchase_All_Show_Search_Api(generics.ListAPIView):
+    search_fields = ['Created_At','Reference_No','Purchase_Status','Payment_Status','Grand_Total','Payment_Due','Added_By']
+    filter_backends = (filters.SearchFilter,)
+    queryset = Purchases.objects.all()
+    serializer_class = Purchases_All_Show_Serializer
+
+
+class Add_Purchase_Add_Api(generics.ListCreateAPIView):
+    #search_fields = ['Reference_No','Purchase_Date','Purchase_Status','Address','Pay_Term','Attached_Document','Discount_Type','Discount_Amount','Purchase_Tax','Additional_Notes','Shipping_Details','Additional_Shipping_Charges','Amount','Paid_On','Payment_Method','Payment_Note']
+    #filter_backends = (filters.SearchFilter,)
+    queryset = Add_Purchase.objects.all()
+    serializer_class = Add_Purchases_Serializer
+class Add_Purchase_All_Show_Search_Api(generics.ListAPIView):
+    search_fields = ['Reference_No','Purchase_Date','Purchase_Status','Address','Pay_Term','Attached_Document','Discount_Type','Discount_Amount','Purchase_Tax','Additional_Notes','Shipping_Details','Additional_Shipping_Charges','Amount','Paid_On','Payment_Method','Payment_Note']
+    filter_backends = (filters.SearchFilter,)
+    queryset = Add_Purchase.objects.all()
+    serializer_class = Add_Purchases_All_Show_Serializer
+
+class List_Purchase_Return_Add_Api(generics.ListCreateAPIView):
+    #search_fields = ['Created_At','Reference_No','Parent_Purchase','Payment_Status','Grand_Total','Payment_Due']
+    #filter_backends = (filters.SearchFilter,)
+    queryset = List_Purchase_Return.objects.all()
+    serializer_class = List_Purchase_Return_Serializer
+class List_Purchase_Return_All_Show_Search_Api(generics.ListAPIView):
+    search_fields = ['Created_At','Reference_No','Parent_Purchase','Payment_Status','Grand_Total','Payment_Due']
+    filter_backends = (filters.SearchFilter,)
+    queryset = List_Purchase_Return.objects.all()
+    serializer_class = List_Purchase_Return_All_Show_Serializer
+
+
+class Additional_Expense_Add_Search_APi(generics.ListCreateAPIView):
+    search_fields = ['Expense_Name','Amount']
+    filter_backends = (filters.SearchFilter,)
+    queryset = Additional_Expense.objects.all()
+    serializer_class = Additonal_Expense_Serializer

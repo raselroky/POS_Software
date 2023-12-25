@@ -182,7 +182,7 @@ class Purchase_Payment_Report(models.Model):
     Paid_On=models.DateTimeField(auto_now_add=True)
     Amount=models.TextField(null=True,blank=True)
     Supplier=models.ForeignKey(Business_name,on_delete=models.CASCADE)
-    Payment_Method=models.IntegerField(choices=PAYMENT_METHOD,default=0)
+    Payment_Method=models.CharField(max_length=1000,choices=PAYMENT_METHOD,default='None')
     Purchase=models.CharField(max_length=1000,null=True,blank=True)
 
     def __str__(self):
@@ -195,7 +195,7 @@ class Sell_Payment_Report(models.Model):
     Amount=models.TextField(null=True,blank=True)
     Customer=models.ForeignKey(Business_name,on_delete=models.CASCADE)
     Customer_group=models.ForeignKey(Customer_Group,on_delete=models.CASCADE)
-    Payment_Method=models.IntegerField(choices=PAYMENT_METHOD,default=0)
+    Payment_Method=models.CharField(max_length=1000,choices=PAYMENT_METHOD,default='None')
     Sell=models.CharField(max_length=1000,null=True,blank=True)
     
     def __str__(self):
@@ -231,7 +231,7 @@ class Register_Report(models.Model):
     Bkash_Nagad_Rocket_Upay=models.TextField(null=True,blank=True)
     Other_Payments=models.TextField(null=True,blank=True)
     Total=models.TextField(null=True,blank=True)
-    Actions=models.IntegerField(choices=ACTION_STATUS,default=0)
+    Actions=models.CharField(max_length=1000,choices=ACTION_STATUS,default='Action')
     
     def __str__(self):
         return str(self.Location.Location)
@@ -242,7 +242,7 @@ class Sales_Report_Added(models.Model):
     Invoice_No=models.TextField(null=True,blank=True)
     Customer_Name=models.ForeignKey(Business_name,on_delete=models.CASCADE)
     Location=models.ForeignKey(Location_Set,on_delete=models.CASCADE)
-    Payment_Status=models.IntegerField(choices=PAYMENT_METHOD,default=0)
+    Payment_Status=models.CharField(max_length=1000,choices=PAYMENT_METHOD,default='None')
     Total_Amount=models.TextField(null=True,blank=True)
     Total_Paid=models.TextField(null=True,blank=True)
     Total_Remaining=models.TextField(null=True,blank=True)
@@ -257,7 +257,7 @@ class Sales_Report_With_Commission(models.Model):
     Invoice_No=models.TextField(null=True,blank=True)
     Customer_Name=models.ForeignKey(Business_name,on_delete=models.CASCADE)
     Location=models.ForeignKey(Location_Set,on_delete=models.CASCADE)
-    Payment_Status=models.IntegerField(choices=PAYMENT_METHOD,default=0)
+    Payment_Status=models.CharField(max_length=1000,choices=PAYMENT_METHOD,default='None')
     Total_Amount=models.TextField(null=True,blank=True)
     Total_Paid=models.TextField(null=True,blank=True)
     Total_Remaining=models.TextField(null=True,blank=True)
@@ -272,7 +272,7 @@ class Sales_Report_Expense(models.Model):
     Reference_No=models.TextField(null=True,blank=True)
     Expense_Category=models.ForeignKey(Expense_Categories_List,on_delete=models.CASCADE)
     Location=models.ForeignKey(Location_Set,on_delete=models.CASCADE)
-    Payment_Status=models.IntegerField(choices=PAYMENT_METHOD,default=0)
+    Payment_Status=models.CharField(max_length=1000,choices=PAYMENT_METHOD,default='None')
     Total_Amount=models.TextField(null=True,blank=True)
     Expense_For=models.TextField(null=True,blank=True)
     Expense_Note=models.TextField(null=True,blank=True)

@@ -5,6 +5,9 @@ from .serializers import Stock_Transfer_Serializer
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404
+from rest_framework import filters
+from rest_framework import generics
+
 
 class Stock_Transfer_Api_List(APIView):
     def get(self,request):
@@ -38,4 +41,10 @@ class Stock_Transfer_Api_Detail(APIView):
     def delete(self, request, pk, format=None):
         snippet = self.get_object(pk)
         snippet.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response({"Message":"Successfully data deleted"})
+
+class Stock_Transfer_Search_Api(generics.ListCreateAPIView):
+    search_fields=['Date','Reference_No','Location_From','Location_To','Status','Shipping_Charges','Total_Amount','Additional_Notes']
+    filter_backends=(filters.SearchFilter,)
+    queryset=Stock_Transfer.objects.all()
+    serializer_class=Stock_Transfer_Serializer

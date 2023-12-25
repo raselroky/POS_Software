@@ -1,9 +1,9 @@
 from django.db import models
 
 STATUS=(
-    (0,'Pending'),
-    (1,'Completed'),
-    (2,'In Transit')
+    ('Pending','Pending'),
+    ('Completed','Completed'),
+    ('In Transit','In Transit')
 )
 
 class Stock_Transfer(models.Model):
@@ -12,7 +12,7 @@ class Stock_Transfer(models.Model):
     Reference_No=models.CharField(max_length=1000,null=True,blank=True)
     Location_From=models.CharField(max_length=1000,null=True,blank=True)
     Location_To=models.CharField(max_length=1000,null=True,blank=True)
-    Status=models.IntegerField(choices=STATUS,default=0)
+    Status=models.CharField(max_length=1000,choices=STATUS,default='Pending')
     Shipping_Charges=models.TextField(null=True,blank=True)
     Total_Amount=models.TextField(null=True,blank=True)
     Additional_Notes=models.CharField(max_length=1000,null=True,blank=True)

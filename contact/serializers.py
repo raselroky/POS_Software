@@ -1,17 +1,6 @@
 from rest_framework import serializers
 from .models import Suppliers,Customers,Customer_Group,Business_name,Contact_id
 
-class Suppliers_Serializer(serializers.ModelSerializer):
-    class Meta:
-        model=Suppliers
-        fields=('__all__')
-
-
-class Customers_Serializer(serializers.ModelSerializer):
-    class Meta:
-        model=Customers
-        fields=('__all__')
-
 
 class Customers_Group_Serializer(serializers.ModelSerializer):
     class Meta:
@@ -27,3 +16,29 @@ class Contact_id_Serializer(serializers.ModelSerializer):
     class Meta:
         model=Contact_id
         fields=('__all__')
+
+class Suppliers_Serializer(serializers.ModelSerializer):
+    #Contact_ID=Contact_id_Serializer(many=True)
+    class Meta:
+        model=Suppliers
+        fields=('__all__')
+
+class Suppliers_All_Show_Serializer(serializers.ModelSerializer):
+    #Contact_ID=Contact_id_Serializer(many=True)
+    class Meta:
+        model=Suppliers
+        fields=('__all__')
+        depth=2
+
+class Customers_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Customers
+        fields=('__all__')
+
+class Customers_All_Show_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Customers
+        fields=('__all__')
+        depth=2
+        
+

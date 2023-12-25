@@ -5,3 +5,4 @@ class Stock_Transfer_Serializer(serializers.ModelSerializer):
     class Meta:
         model=Stock_Transfer
         fields=('__all__')
+        

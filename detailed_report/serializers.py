@@ -5,6 +5,7 @@ class Purchase_Serializer(serializers.ModelSerializer):
     class Meta:
         model=Purchases
         fields=('__all__')
+        
 class Sales_Serializer(serializers.ModelSerializer):
     class Meta:
         model=Sales

@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #"corsheaders",
+    #"multiple_permissions",
     'rest_framework',
     'contact',
     'purchase',
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "django.middleware.security.SecurityMiddleware", 
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    #"multiple_permissions.middlewares.PermissionMiddleware",
     
 ]
 
@@ -134,7 +136,7 @@ USE_TZ = True
 REST_FRAMEWORK = {
     #'DEFAULT_PAGINATION_CLASS': 'my_project.apps.core.pagination.LinkHeaderPagination',
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 25
+    'PAGE_SIZE': 12,
 }
 
 # Default primary key field type

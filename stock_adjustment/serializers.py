@@ -5,3 +5,4 @@ class Stock_Adjustment_Serializer(serializers.ModelSerializer):
     class Meta:
         model=Stock_Adjustment
         fields=('__all__')
+        
