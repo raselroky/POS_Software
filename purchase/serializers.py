@@ -37,7 +37,6 @@ class Additonal_Expense_Serializer(serializers.ModelSerializer):
         model=Additional_Expense
         fields=('__all__')
 
-
 class Add_Quotation_Serializer(serializers.ModelSerializer):
     class Meta:
         model=Add_Quotation
