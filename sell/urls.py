@@ -27,5 +27,7 @@ urlpatterns = [
     path('locationapid/<int:pk>',views.Location_Set_Api_Detail.as_view()),
     path('locationfilter/',views.Location_Search_Api.as_view()),
 
+    path('filterapil/',views.Filter_Add_Search_Api.as_view()),
+    path('filterapid/<int:pk>',views.Filter_Api_Detail.as_view()),
     
 ]

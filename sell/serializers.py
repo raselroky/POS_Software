@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import All_Sales,List_Draft,Shipments,Discount,Location_Set,List_Sell_Return
+from .models import All_Sales,List_Draft,Shipments,Discount,Location_Set,List_Sell_Return,Filter
 
 class Location_Set_Serializer(serializers.ModelSerializer):
     class Meta:
@@ -56,3 +56,8 @@ class Discount_All_Show_Serializer(serializers.ModelSerializer):
         model=Discount
         fields=('__all__')
         depth=1
+
+class Filter_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Filter
+        fields=('__all__')

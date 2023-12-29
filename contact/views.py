@@ -39,11 +39,11 @@ class Suppliers_Api_Detail(APIView):
             raise Http404
     def get(self, request, pk, format=None):
         snippet = self.get_object(pk)
-        serializer = Suppliers_All_Show_Serializer(snippet)
+        serializer = Suppliers_Serializer(snippet)
         return Response(serializer.data)
     def put(self, request, pk, format=None):
         snippet = self.get_object(pk)
-        serializer = Suppliers_All_Show_Serializer(snippet, data=request.data)
+        serializer = Suppliers_Serializer(snippet, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -84,11 +84,11 @@ class Customers_Api_Detail(APIView):
             raise Http404
     def get(self, request, pk, format=None):
         snippet = self.get_object(pk)
-        serializer = Customers_All_Show_Serializer(snippet)
+        serializer = Customers_Serializer(snippet)
         return Response(serializer.data)
     def put(self, request, pk, format=None):
         snippet = self.get_object(pk)
-        serializer = Customers_All_Show_Serializer(snippet, data=request.data)
+        serializer = Customers_Serializer(snippet, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

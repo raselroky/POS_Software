@@ -17,6 +17,7 @@ urlpatterns = [
     path('addsapil/',views.Adds_Api_List.as_view()),
     path('addsapid/<int:pk>',views.Adds_Api_Detail.as_view()),
 
+    path('permission/',views.Permission_Show_Search_Api.as_view()),
 
     path('loginapi/',views.Login_Api.as_view()),
     

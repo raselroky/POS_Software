@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Purchases,List_Purchase_Return,Add_Purchase,Additional_Expense
+from .models import Purchases,List_Purchase_Return,Add_Purchase,Additional_Expense,Add_Quotation
 
 class Purchases_Column_Display(admin.ModelAdmin):
     list_display=('p_k','Created_At','Reference_No','Location','Supplier','Purchase_Status','Payment_Status','Grand_Total','Payment_Due','Added_By')
@@ -16,3 +16,7 @@ admin.site.register(List_Purchase_Return,List_Purchase_Return_Column_Display)
 class Additional_Expense_Column_Display(admin.ModelAdmin):
     list_display=('p_k','Expense_Name','Amount')
 admin.site.register(Additional_Expense,Additional_Expense_Column_Display)
+
+class Add_Quotation_Column_Display(admin.ModelAdmin):
+    list_display=('p_k','Location','Customer','Pay_Term','Commssion_Agent','Sale_Date','Billing_Address','Shipping_Address','Invoice_Number','Attach_Document','Discount_Type','Discount_Amount','Order_Tax','Sell_Note','Shipping_Details','Shipping_Addresss','Shipping_Charges','Shipping_Status','Shipping_Document')
+admin.site.register(Add_Quotation,Add_Quotation_Column_Display)

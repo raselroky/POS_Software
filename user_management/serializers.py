@@ -38,22 +38,19 @@ class CustomUserSerializer(serializers.ModelSerializer):
         return instance
         
 
+class Permission_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Permission
+        fields=('id','name')
+        depth=0
+
 
 class Roles_All_Show_Serailizer(serializers.ModelSerializer):
-    groups=serializers.SlugRelatedField(
-        slug_field='name',
-        queryset=Group.objects.all(),
-        many=True
-        )
-    user_permissions=serializers.SlugRelatedField(
-        slug_field="name",
-        queryset=Permission.objects.all(),
-        many=True
-        )
 
     class Meta:
         model=Roles
         fields=('__all__')
+        depth=3
         
 class Roles_Serailizer(serializers.ModelSerializer):
 

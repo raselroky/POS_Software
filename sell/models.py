@@ -1,5 +1,7 @@
 from django.db import models
-from contact.models import Business_name
+from contact.models import Business_name,Customers
+from user_management.models import CustomUser,Sales_Commission_Ager
+
 
 PAYMENT_STATUS=(
     ('None','None'),
@@ -113,3 +115,17 @@ class Discount(models.Model):
     def __str__(self):
         return str(self.Name.Business_Name)+' '+str(self.Location.Location)
 
+
+class Filter(models.Model):
+    Business_Location=models.ForeignKey(Location_Set,on_delete=models.CASCADE,null=True,blank=True)
+    Customer=models.ForeignKey(Customers,on_delete=models.CASCADE,null=True,blank=True)
+    Payment_Status=models.CharField(max_length=1000,choices=PAYMENT_STATUS,default='None')
+    Date_Range=models.CharField(max_length=1000,null=True,blank=True)
+    User=models.ForeignKey(CustomUser,on_delete=models.CASCADE,null=True,blank=True)
+    Sales_Commission_Agent=models.ForeignKey(Sales_Commission_Ager,on_delete=models.CASCADE,null=True,blank=True)
+    Shipping_Status=models.CharField(max_length=1000,choices=SHIPPING_STATUS,default='None')
+
+    def __str__(self):
+        return self.Customer.Business_Name +' '+self.Customer.Email
+        
+    

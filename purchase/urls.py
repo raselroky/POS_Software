@@ -15,6 +15,10 @@ urlpatterns = [
     path('listpurchasereturnapid/<int:pk>',views.List_Purchase_Return_Api_Detail.as_view()),
     path('listpurchasereturndisplayfilter/',views.List_Purchase_Return_All_Show_Search_Api.as_view()),
 
+    path('addquotationadd/',views.Add_Quotation_Add_Api.as_view()),
+    path('addquotationapid/<int:pk>',views.Add_Quotation_Api_Detail.as_view()),
+    path('addquotationdisplayfilter/',views.Add_Quotation_All_Show_Search_Api.as_view()),
+
     path('expenseaddandsearch/',views.Additional_Expense_Add_Search_APi.as_view()),
     path('expenseapid/<int:pk>',views.Additional_Expense_Api_Detail.as_view()),
 

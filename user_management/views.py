@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from .models import CustomUser,Roles,Adds,Sales_Commission_Ager
-from .serializers import CustomUserSerializer,Roles_Serailizer,Sales_Commission_Ager_Serailizer,Adds_Serailizer,Roles_All_Show_Serailizer
+from .serializers import CustomUserSerializer,Roles_Serailizer,Sales_Commission_Ager_Serailizer,Adds_Serailizer,Roles_All_Show_Serailizer,Permission_Serializer
 from django.contrib.auth.models import Group
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.hashers import check_password
@@ -15,6 +15,7 @@ from django.http import Http404
 from django.core.paginator import Paginator
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 #from multiple_permissions.permissions import IsAuthenticated, IsSuperuser, IsManager
+from django.contrib.auth.models import Group, Permission
 
 
 class User_Api_Detail(APIView):
@@ -56,7 +57,17 @@ class Roles_Add_Search_Api(generics.ListCreateAPIView):
     serializer_class=Roles_Serailizer
     paginate_by = 10
 
-class Roles_Show_Search_Api(generics.ListCreateAPIView):
+
+class Permission_Show_Search_Api(generics.ListAPIView):
+    search_fields=['id','codename','name']
+    filter_backends=(filters.SearchFilter,)
+    
+    queryset=Permission.objects.all()
+    serializer_class=Permission_Serializer
+   
+
+
+class Roles_Show_Search_Api(generics.ListAPIView):
     search_fields=['Role']
     filter_backends=(filters.SearchFilter,)
     
@@ -72,11 +83,11 @@ class Roles_Api_Detail(APIView):
             raise Http404
     def get(self, request, pk, format=None):
         snippet = self.get_object(pk)
-        serializer = Roles_All_Show_Serailizer(snippet)
+        serializer = Roles_Serailizer(snippet)
         return Response(serializer.data)
     def put(self, request, pk, format=None):
         snippet = self.get_object(pk)
-        serializer = Roles_All_Show_Serailizer(snippet, data=request.data)
+        serializer = Roles_Serailizer(snippet, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

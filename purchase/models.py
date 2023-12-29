@@ -2,7 +2,21 @@ from django.db import models
 from contact.models import Suppliers,Customers,Business_name
 from sell.models import Location_Set
 from payment_account.models import Account_type
+from user_management.models import CustomUser,Sales_Commission_Ager
 
+DISCOUNT_TYPE=(
+    ('Please Select','Please Select'),
+    ('Percentage','Percentage'),
+    ('Fixed','Fixed')
+)
+SHIPPING_STATUS=(
+    ('Select','Select'),
+    ('Ordered','Ordered'),
+    ('Packed','Packed'),
+    ('Shipped','Shipped'),
+    ('Delivered','Delivered'),
+    ('Cancel','Cancel')
+)
 PAY_TERM=(
     ('Select','Select'),
     ('Daily','Daily'),
@@ -104,4 +118,31 @@ class List_Purchase_Return(models.Model):
 
     def __str__(self):
         return self.Reference_No+' '+self.Location.Location
+
+class Add_Quotation(models.Model):
+    p_k=models.AutoField(primary_key=True)
+    Location=models.ForeignKey(Location_Set,on_delete=models.CASCADE)
+    Customer=models.ForeignKey(Customers,on_delete=models.CASCADE)
+    Pay_Term=models.CharField(max_length=1000,choices=PAY_TERM,default='Select')
+    Commssion_Agent=models.ForeignKey(Sales_Commission_Ager,on_delete=models.CASCADE)
+    Sale_Date=models.DateTimeField(null=True,blank=True)
+    Billing_Address=models.CharField(max_length=1000,null=True,blank=True)
+    Shipping_Address=models.CharField(max_length=1000,null=True,blank=True)
+    Invoice_Number=models.CharField(max_length=1000,null=True,blank=True)
+    Attach_Document=models.FileField(upload_to='Files/')
+
+    Discount_Type=models.CharField(max_length=1000,choices=DISCOUNT_TYPE,default='Please Select')
+    Discount_Amount=models.TextField(null=True,blank=True)
+    Order_Tax=models.TextField(null=True,blank=True)
+    Sell_Note=models.CharField(max_length=1000,null=True,blank=True)
+
+    Shipping_Details=models.CharField(max_length=1000,null=True,blank=True)
+    Shipping_Addresss=models.CharField(max_length=1000,null=True,blank=True)
+    Shipping_Charges=models.TextField(null=True,blank=True)
+    Shipping_Status=models.CharField(max_length=1000,choices=SHIPPING_STATUS,default='Select')
+    Shipping_Document=models.FileField(upload_to='Files/')
+
+    def __str__(self):
+        return self.Customer.Business_Name
+
     

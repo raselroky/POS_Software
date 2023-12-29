@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import All_Sales,List_Draft,Shipments,Discount,Location_Set,List_Sell_Return
+from .models import All_Sales,List_Draft,Shipments,Discount,Location_Set,List_Sell_Return,Filter
 
 class Location_Set_Column_Display(admin.ModelAdmin):
     list_display=('p_k','Location',)
@@ -24,3 +24,7 @@ admin.site.register(Shipments,Shipments_Column_Display)
 class Discount_Column_Display(admin.ModelAdmin):
     list_display=('p_k','Name','Starts_At','Ends_At','Discount_Amount','Priority','Brand','Category','Product','Location')
 admin.site.register(Discount,Discount_Column_Display)
+
+class Filter_Column_Display(admin.ModelAdmin):
+    list_display=('Business_Location','Customer','Payment_Status','Date_Range','User','Sales_Commission_Agent','Shipping_Status')
+admin.site.register(Filter,Filter_Column_Display)

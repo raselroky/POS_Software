@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Purchases,Add_Purchase,List_Purchase_Return,Additional_Expense
+from .models import Purchases,Add_Purchase,List_Purchase_Return,Additional_Expense,Add_Quotation
 
 class Purchases_Serializer(serializers.ModelSerializer):
     class Meta:
@@ -36,3 +36,14 @@ class Additonal_Expense_Serializer(serializers.ModelSerializer):
     class Meta:
         model=Additional_Expense
         fields=('__all__')
+
+
+class Add_Quotation_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Add_Quotation
+        fields=('__all__')
+class Add_Quotation_All_Show_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Add_Quotation
+        fields=('__all__')
+        depth=2
